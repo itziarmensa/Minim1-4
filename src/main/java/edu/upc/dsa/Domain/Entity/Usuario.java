@@ -1,13 +1,24 @@
 package edu.upc.dsa.Domain.Entity;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Usuario {
     String idUsuario;
     String nombreUsuario;
     String apellidosUsuario;
     int nivelUsuario;
     int puntosUsuario;
+    Boolean partida;
+    List<String> partidas;
+    String partidaActual;
+    String juegoActual;
+    String fecha;
+    int puntosPasoNivel;
 
-    public Usuario(){}
+    public Usuario(){
+        this.partidas = new LinkedList<>();
+    }
 
     public Usuario(String idUsuario, String nombreUsuario, String apellidosUsuario) {
         this.idUsuario = idUsuario;
@@ -15,6 +26,12 @@ public class Usuario {
         this.apellidosUsuario = apellidosUsuario;
         this.nivelUsuario = 0;
         this.puntosUsuario = 0;
+        this.partida = false;
+        this.partidas = new LinkedList<>();
+        this.partidaActual = "";
+        this.juegoActual = "";
+        this.fecha = "";
+        this.puntosPasoNivel = 0;
     }
 
     public String getIdUsuario() {
@@ -55,5 +72,57 @@ public class Usuario {
 
     public void setPuntosUsuario(int puntosUsuario) {
         this.puntosUsuario = puntosUsuario;
+    }
+
+    public Boolean getPartida() {
+        return partida;
+    }
+
+    public void setPartida(Boolean partida) {
+        this.partida = partida;
+    }
+
+    public List<String> getPartidas() {
+        return partidas;
+    }
+
+    public void setPartidas(List<String> partidas) {
+        this.partidas = partidas;
+    }
+
+    public void añadirPartida(String idPartida){
+        this.partidas.add(idPartida);
+    }
+
+    public String getPartidaActual() {
+        return partidaActual;
+    }
+
+    public void setPartidaActual(String partidaActual) {
+        this.partidaActual = partidaActual;
+    }
+
+    public String getJuegoActual() {
+        return juegoActual;
+    }
+
+    public void setJuegoActual(String juegoActual) {
+        this.juegoActual = juegoActual;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getPuntosPasoNivel() {
+        return puntosPasoNivel;
+    }
+
+    public void setPuntosPasoNivel(int puntosPasoNivel) {
+        this.puntosPasoNivel = puntosPasoNivel;
     }
 }
