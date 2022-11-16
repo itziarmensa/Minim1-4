@@ -20,4 +20,6 @@ public interface Manager {
     public List<String> actividadUsuario(String idUsuario, String idJuego) throws UsuarioNoExiste, JuegoNoExiste;
     public int numUsuarios();
     public int numJuegos();
+    public List<Usuario> listaUsuarios();
+    public List<Juego> listaJuegos();
 }

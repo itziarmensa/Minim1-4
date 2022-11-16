@@ -105,6 +105,7 @@ public class ManagerImpl implements Manager {
         }
         usuario.setNivelUsuario(1);
         usuario.setPuntosUsuario(50);
+        usuario.setPartida(true);
         String partida = RandomId.getId();
         usuario.añadirPartida(partida);
         usuario.setPartidaActual(partida);
@@ -168,8 +169,10 @@ public class ManagerImpl implements Manager {
             usuario.setPuntosUsuario(usuario.getPuntosUsuario()+100);
             usuario.setPartida(false);
             usuario.setPartidaActual("");
+            usuario.setNivelUsuario(0);
         }else{
             usuario.setNivelUsuario(usuario.getNivelUsuario()+1);
+            usuario.setPuntosUsuario(puntos);
         }
         logger.info("Se ha incrementado de nivel correctamente");
 
@@ -189,6 +192,8 @@ public class ManagerImpl implements Manager {
         }
         usuario1.setPartida(false);
         usuario1.setPartidaActual("");
+        usuario1.setNivelUsuario(0);
+        usuario1.setPuntosUsuario(0);
         logger.info("Se ha realizado la acción correctamente");
     }
 
@@ -233,4 +238,17 @@ public class ManagerImpl implements Manager {
     public int numJuegos() {
         return this.juegos.size();
     }
+
+    @Override
+    public List<Usuario> listaUsuarios() {
+        List<Usuario> usuarios1 = new ArrayList<>(this.usuarios.values());
+        return usuarios1;
+    }
+
+    @Override
+    public List<Juego> listaJuegos() {
+        return juegos;
+    }
+
+
 }
