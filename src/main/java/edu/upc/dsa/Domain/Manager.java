@@ -2,6 +2,7 @@ package edu.upc.dsa.Domain;
 
 import edu.upc.dsa.Domain.Entity.Exceptions.*;
 import edu.upc.dsa.Domain.Entity.Juego;
+import edu.upc.dsa.Domain.Entity.TO.UsuarioInfo;
 import edu.upc.dsa.Domain.Entity.Usuario;
 
 import java.util.List;

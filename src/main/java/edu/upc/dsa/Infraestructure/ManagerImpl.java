@@ -2,6 +2,7 @@ package edu.upc.dsa.Infraestructure;
 
 import edu.upc.dsa.Domain.Entity.Exceptions.*;
 import edu.upc.dsa.Domain.Entity.Juego;
+import edu.upc.dsa.Domain.Entity.TO.UsuarioInfo;
 import edu.upc.dsa.Domain.Entity.Usuario;
 import edu.upc.dsa.Domain.Entity.VO.RandomId;
 import edu.upc.dsa.Domain.Manager;
