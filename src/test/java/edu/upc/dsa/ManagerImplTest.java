@@ -105,15 +105,17 @@ public class ManagerImplTest {
     }
 
     @Test
-    public void testListaUsuariosJuego() throws UsuarioNoExiste, JuegoNoExiste, PartidaActiva {
+    public void testListaUsuariosJuego() throws UsuarioNoExiste, JuegoNoExiste, PartidaActiva, PartidaInactiva {
         List<Juego> juegos = this.manager.listaJuegos();
         List<Usuario> usuarios = this.manager.listaUsuarios();
         this.manager.inicioPartida("746736","469823467");
         List<Usuario> usar = this.manager.listaUsuariosJuego(juegos.get(0));
         Assert.assertEquals(usuarios.get(0),usar.get(0));
         this.manager.inicioPartida("746736","723678");
+        this.manager.pasarNivel("723678",90,"17/11/2022");
         List<Usuario> usar2 = this.manager.listaUsuariosJuego(juegos.get(0));
-        Assert.assertEquals(usuarios.get(2),usar2.get(1));
+        Assert.assertEquals("723678",usar2.get(0).getIdUsuario());
+        Assert.assertEquals("469823467",usar2.get(1).getIdUsuario());
 
     }
 
@@ -134,5 +136,16 @@ public class ManagerImplTest {
         Assert.assertEquals(part2,partidas.get(1));
         Assert.assertEquals(part3,partidas.get(2));
 
+    }
+
+    @Test
+    public void testActividadUsuario() throws UsuarioNoExiste, JuegoNoExiste, PartidaActiva, PartidaInactiva {
+        List<Usuario> usuarios = this.manager.listaUsuarios();
+        this.manager.inicioPartida("746736","469823467");
+        this.manager.pasarNivel("469823467", 80, "16/11/2022");
+        this.manager.pasarNivel("469823467", 110, "17/11/2022");
+        List<String> actividad = this.manager.actividadUsuario("469823467","746736");
+        Assert.assertEquals("2, 80, 16/11/2022", actividad.get(0));
+        Assert.assertEquals("3, 110, 17/11/2022", actividad.get(1));
     }
 }

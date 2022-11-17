@@ -15,6 +15,7 @@ public class Usuario {
     String juegoActual;
     String fecha;
     int puntosPasoNivel;
+    List<String> actividad;
 
     public Usuario(){
         this.partidas = new LinkedList<>();
@@ -32,6 +33,7 @@ public class Usuario {
         this.juegoActual = "";
         this.fecha = "";
         this.puntosPasoNivel = 0;
+        this.actividad = new LinkedList<>();
     }
 
     public String getIdUsuario() {
@@ -124,5 +126,13 @@ public class Usuario {
 
     public void setPuntosPasoNivel(int puntosPasoNivel) {
         this.puntosPasoNivel = puntosPasoNivel;
+    }
+
+    public List<String> getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(List<String> actividad) {
+        this.actividad = actividad;
     }
 }

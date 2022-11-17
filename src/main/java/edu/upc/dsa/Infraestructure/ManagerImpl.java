@@ -173,6 +173,8 @@ public class ManagerImpl implements Manager {
         }else{
             usuario.setNivelUsuario(usuario.getNivelUsuario()+1);
             usuario.setPuntosUsuario(puntos);
+            List<String> actividad = usuario.getActividad();
+            actividad.add(""+usuario.getNivelUsuario()+", "+puntos+", "+fecha+"");
         }
         logger.info("Se ha incrementado de nivel correctamente");
 
@@ -198,7 +200,7 @@ public class ManagerImpl implements Manager {
     }
 
     @Override
-    public List<Usuario> listaUsuariosJuego(Juego juego) throws JuegoNoExiste {
+    public List<Usuario> listaUsuariosJuego(Juego juego) throws JuegoNoExiste { //ordenado descendentemente por puntos
         logger.info("Obteniendo listado de usuarios del juego "+juego.getIdJuego()+"ordenado descendentement");
         Juego juego1 = getJuegoById(juego.getIdJuego());
         if(juego1==null){
@@ -224,9 +226,24 @@ public class ManagerImpl implements Manager {
     }
 
     @Override
-    public List<String> actividadUsuario(String idUsuario, String idJuego) throws UsuarioNoExiste, JuegoNoExiste {
+    public List<String> actividadUsuario(String idUsuario, String idJuego) throws UsuarioNoExiste, JuegoNoExiste, PartidaInactiva {
         logger.info("Buscando actividad del usuario "+idUsuario+" en el juego "+idJuego+"");
-        return null;
+        Usuario usuario = getUsuarioById(idUsuario);
+        if(usuario==null){
+            logger.error("El usuario no existe");
+            throw new UsuarioNoExiste();
+        }
+        Juego juego1 = getJuegoById(idJuego);
+        if(juego1==null){
+            logger.info("El juego no existe");
+            throw new JuegoNoExiste();
+        }
+        if(usuario.getPartida() == false){
+            logger.error("El usuario no está en una partida");
+            throw new PartidaInactiva();
+        }
+        List<String> actividad = usuario.getActividad();
+        return actividad;
     }
 
     @Override

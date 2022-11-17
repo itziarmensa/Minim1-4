@@ -17,7 +17,7 @@ public interface Manager {
     public void finalizarPartida(Usuario usuario) throws UsuarioNoExiste,PartidaInactiva;
     public List<Usuario> listaUsuariosJuego(Juego juego) throws JuegoNoExiste;
     public List<String> PartidasUsuario(String idUsuario) throws UsuarioNoExiste;
-    public List<String> actividadUsuario(String idUsuario, String idJuego) throws UsuarioNoExiste, JuegoNoExiste;
+    public List<String> actividadUsuario(String idUsuario, String idJuego) throws UsuarioNoExiste, JuegoNoExiste, PartidaInactiva;
     public int numUsuarios();
     public int numJuegos();
     public List<Usuario> listaUsuarios();
